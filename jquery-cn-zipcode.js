@@ -35,19 +35,22 @@
         var defaults = {
             'provinceTitle': '省',
             'provinceName': 'province',
-            'provinceDefault': '',
-            'provinceCss': '',
+            'provinceDefault': null,
+            'provinceCss': null,
+
             'countyTitle': '縣市',
             'countyName': 'county',
-            'countyDefault': '',
-            'countyCss': '',
+            'countyDefault': null,
+            'countyCss': null,
+
             'districtTitle': '鄉鎮市區',
             'districtName': 'district',
-            'districtDefault': '',
-            'districtCss': '',
+            'districtDefault': null,
+            'districtCss': null,
+            
             'zipcodeName': 'zipcode',
-            'zipcodeDefault': '',
-            'zipcodeCss': '',
+            'zipcodeDefault': null,
+            'zipcodeCss': null,
 
             'onProvinceSelect': null,
             'onCountySelect': null,
@@ -67,33 +70,39 @@
             var self = this,
                 container = self.container,
                 options = self.options,
+                readonly = options.readonly,
+                role = {
+                    province: container.find('[data-role=province]:first'),
+                    county: container.find('[data-role=county]:first'),
+                    district: container.find('[data-role=district]:first'),
+                    zipcode: container.find('[data-role=zipcode]:first')
+                },
                 provinceName = options.provinceName,
                 countyName = options.countyName,
                 districtName = options.districtName,
-                zipcodeName = options.zipcodeName,
-                readonly = options.readonly;
+                zipcodeName = options.zipcodeName;
 
             // Elements create
             $('<select/>')
                 .attr('name', provinceName)
-                .addClass(undefined !== options.provinceCss? options.provinceCss: '')
-                .appendTo(container);
+                .addClass(undefined !== options.provinceCss? options.provinceCss: null)
+                .appendTo(role.province.length? role.province: container);
 
             $('<select/>')
                 .attr('name', countyName)
-                .addClass(undefined !== options.countyCss? options.countyCss: '')
-                .appendTo(container);
+                .addClass(undefined !== options.countyCss? options.countyCss: null)
+                .appendTo(role.county.length? role.county: container);
 
             $('<select/>')
                 .attr('name', districtName)
-                .addClass(undefined !== options.districtCss? options.districtCss: '')
-                .appendTo(container);
+                .addClass(undefined !== options.districtCss? options.districtCss: null)
+                .appendTo(role.district.length? role.district: container);
 
             $('<input/>')
                 .attr({'type': 'text', 'name': zipcodeName})
                 .prop('readonly', readonly)
-                .addClass(undefined !== options.zipcodeCss? options.zipcodeCss: '')
-                .appendTo(container);
+                .addClass(undefined !== options.zipcodeCss? options.zipcodeCss: null)
+                .appendTo(role.zipcode.length? role.zipcode: container);
 
             self.wrap = {
                 'province': container.find('select[name="' + provinceName + '"]:first'),
