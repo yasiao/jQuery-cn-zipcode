@@ -2601,7 +2601,7 @@
                 '琼山区': '571100',
                 '美兰区': '570203'
             },
-            '省直辖县级行政单位': {
+            '省份直辖县级行政单位': {
                 '五指山市': '572200',
                 '琼海市': '571400',
                 '儋州市': '571700',
@@ -3738,7 +3738,7 @@
                 '青河县': '836200',
                 '吉木乃县': '836800'
             },
-            '省直辖县级行政单位': {
+            '省份直辖县级行政单位': {
                 '石河子市': '832000',
                 '阿拉尔市': '843300',
                 '图木舒克市': '843806',
@@ -3765,24 +3765,24 @@
 
     function CNzipcode(container, options) {
         var defaults = {
-            'provinceTitle': '省',
+            'provinceTitle': '省份',
             'provinceName': 'province',
             'provinceDefault': null,
-            'provinceCss': null,
+            'provinceClass': null,
 
             'countyTitle': '縣市',
             'countyName': 'county',
             'countyDefault': null,
-            'countyCss': null,
+            'countyClass': null,
 
             'districtTitle': '鄉鎮市區',
             'districtName': 'district',
             'districtDefault': null,
-            'districtCss': null,
+            'districtClass': null,
 
             'zipcodeName': 'zipcode',
             'zipcodeDefault': null,
-            'zipcodeCss': null,
+            'zipcodeClass': null,
 
             'onProvinceSelect': null,
             'onCountySelect': null,
@@ -3817,23 +3817,23 @@
             // Elements create
             $('<select/>')
                 .attr('name', provinceName)
-                .addClass(undefined !== options.provinceCss? options.provinceCss: null)
+                .addClass(undefined !== options.provinceClass? options.provinceClass: null)
                 .appendTo(role.province.length? role.province: container);
 
             $('<select/>')
                 .attr('name', countyName)
-                .addClass(undefined !== options.countyCss? options.countyCss: null)
+                .addClass(undefined !== options.countyClass? options.countyClass: null)
                 .appendTo(role.county.length? role.county: container);
 
             $('<select/>')
                 .attr('name', districtName)
-                .addClass(undefined !== options.districtCss? options.districtCss: null)
+                .addClass(undefined !== options.districtClass? options.districtClass: null)
                 .appendTo(role.district.length? role.district: container);
 
             $('<input/>')
                 .attr({'type': 'text', 'name': zipcodeName})
                 .prop('readonly', readonly)
-                .addClass(undefined !== options.zipcodeCss? options.zipcodeCss: null)
+                .addClass(undefined !== options.zipcodeClass? options.zipcodeClass: null)
                 .appendTo(role.zipcode.length? role.zipcode: container);
 
             self.wrap = {
