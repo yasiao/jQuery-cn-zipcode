@@ -157,6 +157,10 @@ $('#cnzipcode').cnzipcode();
 </tr>
 </table>
 
+### 備註
+
+預設值的優先順序：郵遞區號 > 鄉鎮市區 > 縣市 > 省份。
+
 ## 參考資料 References
 
 [essoduke/jQuery-TWzipcode](https://github.com/essoduke/jQuery-TWzipcode)

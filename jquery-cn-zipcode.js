@@ -3751,8 +3751,7 @@
      * _hasOwnProperty for compatibility IE
      * @param {Object} obj Object
      * @param {string} property Property name
-     * @return {bool}
-     * @version 2.4.3
+     * @return {boolean}
      */
     function _hasOwnProperty(obj, property) {
         try {
@@ -3996,19 +3995,34 @@
             });
 
             // Default value
-            if ('undefined' !== typeof options.provinceDefault) {
+            if (options.provinceDefault) {
                 self.wrap.province.val(options.provinceDefault).trigger('change');
-
-                if (_hasOwnProperty(data[options.provinceDefault], options.countyDefault)) {
-                    self.wrap.county.val(options.countyDefault).trigger('change');
-
-                    if (_hasOwnProperty(data[options.provinceDefault][options.countyDefault], options.districtDefault)) {
-                        self.wrap.district.val(options.districtDefault).trigger('change');
-                    }
-                }
             }
 
-            self.wrap.zipcode.val(options.zipcodeDefault).trigger('blur');
+            if (options.countyDefault) {
+                for (var province in data) {
+                    if (_hasOwnProperty(data[province], options.countyDefault)) {
+                        self.wrap.province.val(province).trigger('change');
+                    }
+                }
+                self.wrap.county.val(options.countyDefault).trigger('change');
+            }
+
+            if (options.districtDefault) {
+                for (var province in data) {
+                    for (var county in data[province]) {
+                        if (_hasOwnProperty(data[province][county], options.districtDefault)) {
+                            self.wrap.province.val(province).trigger('change');
+                            self.wrap.county.val(county).trigger('change');
+                        }
+                    }
+                }
+                self.wrap.district.val(options.districtDefault).trigger('change');
+            }
+
+            if (options.zipcodeDefault) {
+                self.wrap.zipcode.val(options.zipcodeDefault).trigger('blur');
+            }
         }
     };
 
