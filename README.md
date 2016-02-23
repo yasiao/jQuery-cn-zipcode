@@ -164,3 +164,7 @@ $('#cnzipcode').cnzipcode();
 ## 參考資料 References
 
 [essoduke/jQuery-TWzipcode](https://github.com/essoduke/jQuery-TWzipcode)
+
+## 授權 License
+
+[MIT License](http://opensource.org/licenses/MIT)
